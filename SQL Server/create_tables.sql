@@ -1,14 +1,14 @@
 USE [imdb]
 GO
 
-/****** Object:  Table [dbo].[akas]    Script Date: 4/16/2025 6:10:05 PM ******/
+
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[akas](
+CREATE TABLE [dbo].[title_akas](
 	[titleid] [varchar](16) NULL,
 	[ordering] [int] NOT NULL,
 	[title] [varchar](1024) NULL,
@@ -24,38 +24,38 @@ GO
 USE [imdb]
 GO
 
-/****** Object:  Table [dbo].[basics]    Script Date: 4/16/2025 6:13:10 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[basics](
-	[tconst] [varchar](8000) NULL,
-	[titleType] [varchar](8000) NULL,
-	[primaryTitle] [varchar](8000) NULL,
-	[originalTitle] [varchar](8000) NULL,
+CREATE TABLE [dbo].[title_basics](
+	[tconst] [varchar](32) NULL,
+	[titleType] [varchar](32) NULL,
+	[primaryTitle] [varchar](1000) NULL,
+	[originalTitle] [varchar](1000) NULL,
 	[isAdult] [bit] NULL,
-	[startYEar] [varchar](50) NULL,
-	[endYear] [varchar](50) NULL,
-	[runtimeMinutes] [varchar](50) NULL,
-	[genres] [text] NULL
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+	[startYEar] varchar(8) NULL,
+	[endYear]  varchar(68) NULL,
+	[runtimeMinutes]  varchar(8) NULL,
+	[genres] varchar(64) NULL
+) 
 GO
+
 
 
 USE [imdb]
 GO
 
-/****** Object:  Table [dbo].[crew]    Script Date: 4/16/2025 6:13:20 PM ******/
+
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[crew](
+CREATE TABLE [dbo].[title_crew](
 	[tconst] [varchar](8000) NULL,
 	[directors] [varchar](8000) NULL,
 	[writers] [varchar](max) NULL
@@ -66,7 +66,7 @@ GO
 USE [imdb]
 GO
 
-/****** Object:  Table [dbo].[name_basics]    Script Date: 4/16/2025 6:13:29 PM ******/
+
 SET ANSI_NULLS ON
 GO
 
@@ -87,14 +87,14 @@ GO
 USE [imdb]
 GO
 
-/****** Object:  Table [dbo].[principals]    Script Date: 4/16/2025 6:13:35 PM ******/
+
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[principals](
+CREATE TABLE [dbo].[title_principals](
 	[tconst] [varchar](8000) NULL,
 	[ordering] [int] NULL,
 	[nconst] [varchar](8000) NULL,
@@ -108,18 +108,44 @@ GO
 USE [imdb]
 GO
 
-/****** Object:  Table [dbo].[ratings]    Script Date: 4/16/2025 6:13:45 PM ******/
+
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[ratings](
+CREATE TABLE [dbo].[title_ratings](
 	[tconst] [varchar](8000) NULL,
 	[averageRating] [varchar](8000) NULL,
 	[numVotes] [varchar](50) NULL
 ) ON [PRIMARY]
 GO
 
+
+CREATE TABLE title_episode(
+	tconst varchar(32) NULL,
+	parentTconst  varchar(32) NULL,
+	seasonNumber varchar(8) NULL,
+    episodeNumber varchar(8) NULL
+) ;
+
+
+USE [imdb]
+GO
+
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[title_episode](
+	[tconst] [varchar](32) NULL,
+	[parentTconst] [varchar](32) NULL,
+	[seasonNumber] [varchar](8) NULL,
+	[episodeNumber] [varchar](8) NULL
+) ON [PRIMARY]
+GO
 
